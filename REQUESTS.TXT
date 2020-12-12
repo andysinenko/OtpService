@@ -1,0 +1,37 @@
+1) Request for otp
+http://localhost:8080/otp/andy.sinenko@gmail.com GET
+    Response:
+    {
+        "chellangeId": "f580d099-e8d7-498a-b22a-4448b409841e",
+        "otp": "jfgq"
+    }
+
+2) Request for session token
+http://localhost:8080/otp/ POST
+    Request body:
+    {
+        "chellangeId": "f580d099-e8d7-498a-b22a-4448b409841e",
+        "otp": "jfgq",
+        "email":"andy.sinenko@gmail.com"
+    }
+    Response:
+    {
+        "sessionId": "43596a54-d14b-48a7-a42e-5cecdf9bb0f8",
+        "authorization": "bnVsbDo0MzU5NmE1NC1kMTRiLTQ4YTctYTQyZS01Y2VjZGY5YmIwZjg6amF2YS51dGlsLkdyZWdvcmlhbkNhbGVuZGFyW3RpbWU9MTYwNzgxMzc3MzMzOSxhcmVGaWVsZHNTZXQ9dHJ1ZSxhcmVBbGxGaWVsZHNTZXQ9dHJ1ZSxsZW5pZW50PXRydWUsem9uZT1zdW4udXRpbC5jYWxlbmRhci5ab25lSW5mb1tpZD0iRXVyb3BlL0tpZXYiLG9mZnNldD03MjAwMDAwLGRzdFNhdmluZ3M9MzYwMDAwMCx1c2VEYXlsaWdodD10cnVlLHRyYW5zaXRpb25zPTEyMSxsYXN0UnVsZT1qYXZhLnV0aWwuU2ltcGxlVGltZVpvbmVbaWQ9RXVyb3BlL0tpZXYsb2Zmc2V0PTcyMDAwMDAsZHN0U2F2aW5ncz0zNjAwMDAwLHVzZURheWxpZ2h0PXRydWUsc3RhcnRZZWFyPTAsc3RhcnRNb2RlPTIsc3RhcnRNb250aD0yLHN0YXJ0RGF5PS0xLHN0YXJ0RGF5T2ZXZWVrPTEsc3RhcnRUaW1lPTM2MDAwMDAsc3RhcnRUaW1lTW9kZT0yLGVuZE1vZGU9MixlbmRNb250aD05LGVuZERheT0tMSxlbmREYXlPZldlZWs9MSxlbmRUaW1lPTM2MDAwMDAsZW5kVGltZU1vZGU9Ml1dLGZpcnN0RGF5T2ZXZWVrPTEsbWluaW1hbERheXNJbkZpcnN0V2Vlaz0xLEVSQT0xLFlFQVI9MjAyMCxNT05USD0xMSxXRUVLX09GX1lFQVI9NTEsV0VFS19PRl9NT05USD0zLERBWV9PRl9NT05USD0xMyxEQVlfT0ZfWUVBUj0zNDgsREFZX09GX1dFRUs9MSxEQVlfT0ZfV0VFS19JTl9NT05USD0yLEFNX1BNPTAsSE9VUj0wLEhPVVJfT0ZfREFZPTAsTUlOVVRFPTU2LFNFQ09ORD0xMyxNSUxMSVNFQ09ORD0zMzksWk9ORV9PRkZTRVQ9NzIwMDAwMCxEU1RfT0ZGU0VUPTBd"
+    }
+
+CURL:
+curl --location --request GET 'http://localhost:8080/otp/andy.sinenko@gmail.com' \
+--header 'Content-Type: application/json' \
+--data-raw ''
+
+curl --location --request POST 'http://localhost:8080/otp/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "chellangeId": "f580d099-e8d7-498a-b22a-4448b409841e",
+    "otp": "jfgq",
+    "email":"andy.sinenko@gmail.com"
+}'
+
+
+

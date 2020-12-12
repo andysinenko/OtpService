@@ -1,0 +1,71 @@
+server:
+  port: 8080
+logging:
+  level:
+    springfox: info
+    org:
+      springframework: INFO
+      hibernate: INFO
+    ua: DEBUG
+---
+spring:
+  profiles:
+    active: psql
+  application:
+    name: OtpService
+  mail:
+    debug: true
+    host: smtp.gmail.com
+    port: 587
+    username: andy.sinenko.test@gmail.com
+    password: 123456#
+    tls: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          port: 587
+          starttls:
+            enable: true
+management:
+  server:
+    port: 8090
+  endpoint:
+    health:
+      show-details: ALWAYS
+---
+spring:
+  profile: psql
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/postgres?currentSchema=public
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        hbm2ddl:
+          auto: none
+        show_sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    dialect: org.hibernate.dialect.PostgreSQL9Dialect
+    database: POSTGRESQL
+    show-sql: false
+    hibernate:
+      ddl-auto: 'none'
+  flyway:
+    locations: classpath:db/migration
+    validate-on-migrate: false
+    clean-disabled: true
+    baselineOnMigrate: true
+otp:
+  emailGeneratorProperies:
+    otpLength: 4
+    otpCharSequence: abcdefghijklmnopqrstuvwxyz0123456789
+    encoding: UTF-8
+  timeToLive: 600
+  messageTemplate: "This is Your OTP code: %s\n"
+  subjectMessage: "Your OTP value"

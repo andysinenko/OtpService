@@ -1,0 +1,46 @@
+server:
+  port: 8080
+logging:
+  level:
+    springfox: info
+    org:
+      springframework: INFO
+      hibernate: INFO
+      hsqldb: DEBUG
+---
+spring:
+  profile: test
+  datasource:
+    url: jdbc:hsqldb:mem:pfm_db;memory_lobs=true
+    username: sa
+    password:
+  jpa:
+    dialect: org.hibernate.dialect.HSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mail:
+    debug: true
+    host: smtp.gmail.com
+    port: 587
+    username: andy.sinenko.test@gmail.com
+    password: 123456#
+    tls: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          port: 587
+          starttls:
+            enable: true
+  flyway:
+    enabled: false
+    validate-on-migrate: false
+otp:
+  emailGeneratorProperies:
+    otpLength: 4
+    otpCharSequence: abcdefghijklmnopqrstuvwxyz0123456789
+    encoding: UTF-8
+  timeToLive: 600
+  messageTemplate: "This is Your OTP code: %s\n"
+  subjectMessage: "Your OTP value"
